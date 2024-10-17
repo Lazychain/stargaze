@@ -4,7 +4,6 @@ def run(
     public_rpc_port=26657,
     public_p2p_port=26656,
     public_rest_port=1317,
-    public_proxy_port=26658,
     public_grpc_port=9090,
     public_grpc_web_port=9091,
 ):
@@ -79,7 +78,7 @@ def run(
     )["output"]
 
     # kurtosis is so limited that we need to filter \n and to use that we need tr....
-    cmd="starsd tx bank send {0} {1} 1000000000ustars --keyring-backend test --fees 75000ustars -y".format(validator_addr,dev_addr)
+    cmd="starsd tx bank send {0} {1} 1000000000ustars --keyring-backend test --fees 75000ustars -y --output json 2> /dev/null | jq '.txhash' | sed 's/\"//g;' | tr '\n' ' ' | tr -d ' '".format(validator_addr,dev_addr)
     fund_wallet = plan.exec(
         description="Funding dev wallet {0}".format(dev_addr),
         service_name=service_name,
@@ -92,7 +91,7 @@ def run(
         ),
     )["output"]
 
-    cmd="starsd query bank balances {0}".format(dev_addr)
+    cmd="sleep 5 && starsd query bank balances {0}".format(dev_addr)
     fund_wallet = plan.exec(
         description="Checking dev wallet balance {0}".format(dev_addr),
         service_name=service_name,
