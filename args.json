@@ -1,0 +1,8 @@
+{
+  "dummy_mnemonic": "produce state tone beauty long wash bamboo copper liquid charge shoot chest coffee ecology tooth soldier spoon squirrel rhythm canal cute lawsuit pioneer consider",
+  "public_rpc_port": 26657,
+  "public_p2p_port": 26656,
+  "public_rest_port": 1317,
+  "public_grpc_port": 9090,
+  "public_grpc_web_port": 9091
+}

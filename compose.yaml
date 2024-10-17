@@ -1,0 +1,28 @@
+# Docker Compose is used for spinning up the local-da docker container along with the GM container.
+
+services:
+  lazy:
+    container_name: stargaze
+    # The build config can be used for debugging and testing changes to the Dockerfile
+    build:
+      context: .
+      dockerfile: Dockerfile.lazy
+      tags:
+        - ghcr.io/lazychain/local-stargaze:v14.0.0-beta1
+
+    # Used for targetting localhost as if you were outside the container
+    # network_mode: host
+    ports:
+      - 26657:26657
+      - 26656:26656
+      - 1317:1317
+      - 26658:26658
+      - 9090:9090
+      - 9091:9091
+
+    # Always pull the latest image
+    pull_policy: always
+
+    # command: "-f /dev/null"
+    # entrypoint: /usr/bin/tail
+    # tty: true
