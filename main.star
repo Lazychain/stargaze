@@ -228,7 +228,6 @@ def run(
     return { 
         "validator_addr" : validator_addr, 
         "dev_addr" : dev_addr, 
-        "cw721_addr": cw721_addr,
         "contracts": contracts,
     }
 
